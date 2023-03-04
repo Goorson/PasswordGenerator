@@ -105,6 +105,7 @@ public class PasswordGenerator extends JFrame {
         }
 
         passwordField.setText(password);
+        showPasswordStrength(password);
     }
 
     private void copyPasswordToClipboard() {
@@ -136,6 +137,19 @@ public class PasswordGenerator extends JFrame {
         }
 
         return score;
+    }
+
+    void showPasswordStrength(String password){
+        int strength = getPasswordStrength(password);
+        if (strength<=2){
+            passwordField.setBackground(WEAK_COLOR);
+        }
+        else if (strength<=4 && strength>2){
+            passwordField.setBackground(MEDIUM_COLOR);
+        }
+        else{
+            passwordField.setBackground(STRONG_COLOR);
+        }
     }
 
     public static void main(String[] args) {
